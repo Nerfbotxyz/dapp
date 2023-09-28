@@ -1,7 +1,7 @@
 <template>
-  <v-menu v-if="auth.address">
+  <v-menu v-if="auth.isLoggedIn">
     <template #activator="{ props }">
-      <code style="cursor: pointer;" v-bind="props">{{ auth.address }}</code>
+      <code style="cursor: pointer;" v-bind="props">{{ auth.apiKey }}</code>
     </template>
     <v-list>
       <v-list-item @click="onDisconnectClicked">
@@ -9,6 +9,7 @@
       </v-list-item>
     </v-list>
   </v-menu>
+
   <v-btn
     v-else
     color="white"
@@ -17,17 +18,46 @@
   >
     Connect
   </v-btn>
+
+  <v-dialog v-model="isDialogOpen">
+    <template #default>
+      <v-card title="Connect">
+        <v-form v-model="isFormValid" @submit.prevent="onDialogConfirmed">
+          <v-card-text>
+            <v-text-field v-model="apiKey" label="API Key" :rules="rules" />
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="error" variant="text" @click="onDialogCancelled">
+              Cancel
+            </v-btn>
+            <v-spacer />
+            <v-btn color="primary" variant="text" type="submit">
+              Connect
+            </v-btn>
+          </v-card-actions>
+        </v-form>
+      </v-card>
+    </template>
+  </v-dialog>
 </template>
 
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth'
-
+const apiKey = ref('')
+const isFormValid = ref(false)
+const isDialogOpen = ref(false)
+const rules = [ (value: string) => !!value || 'Required' ]
 const auth = useAuthStore()
-const onConnectClicked = debounce(async () => await auth.connect())
+const onConnectClicked = debounce(() => isDialogOpen.value = true)
+const onDialogConfirmed = debounce(async () => {
+  try {
+    if (!isFormValid.value) { return }
+    await auth.connect(apiKey.value)
+    isDialogOpen.value = false
+  } catch (error) {
+    console.error(error)
+  }
+})
+const onDialogCancelled = debounce(() => isDialogOpen.value = false)
 const onDisconnectClicked = debounce(async () => await auth.disconnect())
-// const truncatedAddress = computed(
-//   () => auth.address?.slice(0, 6)
-//     + '...'
-//     + auth.address?.slice(auth.address?.length - 6)
-// )
 </script>

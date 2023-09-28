@@ -16,11 +16,11 @@ export default defineNuxtConfig({
           content: 'Art x By x City'
         }
       ],
-      link: [{
-        rel: 'icon',
-        type: 'image/png',
-        href: '/logo/art-by-city/art-by-city-favicon.png'
-      }]
+      // link: [{
+      //   rel: 'icon',
+      //   type: 'image/png',
+      //   href: '/logo/art-by-city/art-by-city-favicon.png'
+      // }]
     }
   },
 
