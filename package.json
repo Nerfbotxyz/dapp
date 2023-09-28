@@ -1,8 +1,8 @@
 {
-  "name": "@artbycity/dapp",
+  "name": "@nerfbot/dapp",
   "author": "Jim Toth <jim@artby.city> (https://artby.city/jim)",
   "license": "AGPL-3.0-only",
-  "homepage": "https://artby.city",
+  "homepage": "https://nerfbot.io",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -23,11 +23,8 @@
     "vue-eslint-parser": "^9.3.1"
   },
   "dependencies": {
-    "@artbycity/sdk": "^0.0.1",
     "@mdi/font": "^7.2.96",
     "@pinia/nuxt": "^0.4.11",
-    "arconnect": "^1.0.3",
-    "buffer": "^6.0.3",
     "lodash": "^4.17.21",
     "pinia": "^2.1.6",
     "sass": "^1.66.1",
