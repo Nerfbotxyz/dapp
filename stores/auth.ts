@@ -25,7 +25,7 @@ export const useAuthStore = defineStore('auth', {
       // TODO -> test that this is a valid api key by trying to use it probably
       this.apiKey = apiKey
     },
-    async disconnect() {
+    disconnect() {
       this.apiKey = null
       this.label = null
     }

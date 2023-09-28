@@ -24,7 +24,7 @@
       <v-card title="Connect">
         <v-form v-model="isFormValid" @submit.prevent="onDialogConfirmed">
           <v-card-text>
-            <v-text-field label="API Key" v-model="apiKey" :rules="rules" />
+            <v-text-field v-model="apiKey" label="API Key" :rules="rules" />
           </v-card-text>
           <v-card-actions>
             <v-btn color="error" variant="text" @click="onDialogCancelled">
@@ -48,7 +48,7 @@ const isFormValid = ref(false)
 const isDialogOpen = ref(false)
 const rules = [ (value: string) => !!value || 'Required' ]
 const auth = useAuthStore()
-const onConnectClicked = debounce(async () => isDialogOpen.value = true)
+const onConnectClicked = debounce(() => isDialogOpen.value = true)
 const onDialogConfirmed = debounce(async () => {
   try {
     if (!isFormValid.value) { return }

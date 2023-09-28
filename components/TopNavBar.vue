@@ -1,7 +1,9 @@
 <template>
   <v-app-bar flat>
     <template #prepend>
-      <v-btn flat variant="text" to="/">NERFBOT</v-btn>
+      <v-btn flat variant="text" to="/">
+        NERFBOT
+      </v-btn>
     </template>
 
     <template #append>
