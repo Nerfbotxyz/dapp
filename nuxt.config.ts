@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         {
           hid: 'description',
           name: 'Description',
-          content: 'Art x By x City'
+          content: 'Nerfbot'
         }
       ],
       // link: [{
@@ -51,5 +51,11 @@ export default defineNuxtConfig({
   /**
    * Vue Router Config
    */
-  pages: true
+  pages: true,
+
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: 'https://api.nerfbot.io'
+    }
+  }
 })

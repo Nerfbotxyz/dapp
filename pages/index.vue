@@ -3,7 +3,8 @@
     <v-row justify="center">
       <v-col cols="auto">
         <p v-if="auth.isLoggedIn">
-          hello, {{ auth.apiKey }}!  welcome to the index page
+          hello, <strong>{{ auth.label || auth.apiKey }}</strong>!
+          welcome to the index page
         </p>
         <p v-else>
           hello! this is this index page, click connect to log in

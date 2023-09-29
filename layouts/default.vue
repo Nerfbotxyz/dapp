@@ -14,8 +14,6 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth'
-
-await useAsyncData('auth-bootstrap', async () => {
-  await useAuthStore().bootstrap()
-})
+const auth = useAuthStore()
+await useAsyncData('auth-bootstrap', async () => { await auth.bootstrap() })
 </script>
